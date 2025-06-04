@@ -13,7 +13,9 @@ export class InvoiceService {
   public invoices$: Observable<Invoice[]> = this.invoicesSubject.asObservable();
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.load()
+  }
 
   get(id: string): Invoice | undefined {
     const currentInvoices = this.invoicesSubject.getValue();

@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
+import {HomeComponent} from './pages/home/home.component'
+import { InvoiceComponent } from './pages/invoice/invoice.component';
 
 export const routes: Routes = [
     {
         path: "",
-        loadComponent: () => import("./pages/home/home.component").then(m => m.HomeComponent)
+        component:HomeComponent,
     },
     {
         path: "invoice/:id",
-        loadComponent: () => import("./pages/invoice/invoice.component").then(m => m.InvoiceComponent)
+        component: InvoiceComponent
     }
 ];

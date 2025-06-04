@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.invoiceService.load();
     this.invoiceService.invoices$.subscribe({
       next: (invoices) => {
         this.invoices = invoices;
