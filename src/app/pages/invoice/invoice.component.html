@@ -1,9 +1,123 @@
 <div class="invoice-wrapper">
     <div class="invoice-info-container">
-        <div class="navigation-conatiner">
-            <a href="/">
-Go Back
+        <section class="navigation-conatiner">
+            <a href="/" class="back-link">
+                <img class="back-icon" src="assets/image/icon-arrow-left.svg" alt="back image" />
+                <p> Go back</p>
             </a>
-        </div>
+        </section>
+
+        <section class="action-bar">
+
+            <div class="status">
+                <p class="status-label">Status</p>
+                <div class="status-container" [ngClass]="{
+                        'paid-bg-w-opacity': invoice.status === 'paid',
+                        'pending-bg-w-opacity': invoice.status === 'pending',
+                        'draft-bg-w-opacity': invoice.status === 'draft'
+                    }">
+                    <div class="dot" [ngClass]="{
+                        'paid-bg': invoice.status === 'paid',
+                        'pending-bg': invoice.status === 'pending',
+                        'draft-bg': invoice.status === 'draft'
+                    }"></div>
+                    <p class="status" [ngClass]="{
+                        'paid-text': invoice.status === 'paid',
+                        'pending-text': invoice.status === 'pending',
+                        'draft-text': invoice.status === 'draft'
+                    }">{{invoice.status}}</p>
+                </div>
+            </div>
+
+
+            <div class="actions-container">
+                <button class="action-button neutral">Edit</button>
+                <button class="action-button danger">Delete</button>
+                <button class="action-button primary">Mark as Paid</button>
+            </div>
+
+        </section>
+
+        <section class="invoice-details">
+
+            <div class="invoice-header">
+                <div class="invoice-number-container">
+                    <h1><span class="hashtag">#</span>{{invoice.id}}</h1>
+                    <p>{{invoice.description}}</p>
+                </div>
+                <div class="invoice-address">
+                    <p>{{invoice.senderAddress.street}}</p>
+                    <p>{{invoice.senderAddress.city}}</p>
+                    <p>{{invoice.senderAddress.postCode}}</p>
+                    <p>{{invoice.senderAddress.country}}</p>
+                </div>
+            </div>
+
+            <div class="invoice-info">
+                <div class="col col-w-row">
+                    <div class="row">
+                        <h2>Invoice Date</h2>
+                        <p>{{ invoice.createdAt | date : 'dd MMM yyyy'}}</p>
+                    </div>
+                    <div class="row">
+                        <h2>Payment Due</h2>
+                        <p>{{ invoice.paymentDue | date : 'dd MMM yyyy' }}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2>Bill To</h2>
+                    <p>{{invoice.clientName}}</p>
+                    <div class="bill-to-address">
+                        <p>{{invoice.clientAddress.street}}</p>
+                        <p>{{invoice.clientAddress.city}}</p>
+                        <p>{{invoice.clientAddress.postCode}}</p>
+                        <p>{{invoice.clientAddress.country}}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2>Sent to</h2>
+                    <p>{{invoice.clientEmail}}</p>
+                </div>
+            </div>
+
+            <div class="invoice-items">
+                <div class="header">
+                    <div class="header-col">
+                        <h3>Item Name</h3>
+                    </div>
+                    <div class="header-col">
+                        <h3>QTY.</h3>
+                    </div>
+                    <div class="header-col">
+                        <h3>Price</h3>
+                    </div>
+                    <div class="header-col">
+                        <h3>Total</h3>
+                    </div>
+                </div>
+                @for (item of invoice.items; track $index) {
+                <div class="data-row">
+                    <div class="data-col">
+                        <p>{{item.name}}</p>
+                    </div>
+                    <div class="data-col">
+                         <p>{{item.quantity}}</p>
+                    </div>
+                    <div class="data-col">
+                        {{item.price | currency:'GBP':'symbol':'1.2-2':'en-GB'}}
+                    </div>
+                    <div class="data-col">
+                        {{item.total | currency:'GBP':'symbol':'1.2-2':'en-GB'}}
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="total">
+                <p>Amount Due</p>
+                <h2>{{ invoice.total | currency:'GBP':'symbol':'1.2-2':'en-GB'}}</h2>
+            </div>
+
+        </section>
+
     </div>
 </div>
