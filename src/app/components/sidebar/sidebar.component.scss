@@ -1,0 +1,68 @@
+
+.sidebar-wrapper {
+    background-color: #373B53;
+    width: 103px;
+    height: 100vh;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.logo-container{
+    width: 103px;
+    height: 103px;
+    background-color: #7C5DFA;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.logo-button-bg{
+    position: absolute;
+    bottom: 0;
+    background-color: #9277FF;
+    height: 50%;
+    left: 0;
+    right: 0;
+    border-top-left-radius: 20px;
+}
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.darkmode-toggle .toggle-button {
+    background-color: transparent;
+    border: none;
+    margin-bottom: 32.1px;
+}
+
+.toggle-icon{
+    height: 19.99px;
+    width: 19.9px;
+}
+
+.hr {
+    width: 100%;
+    border: 1px solid #494E6E;
+}
+
+.logo{
+    z-index: 10;
+    width: 40px;
+    height: 37.71px;
+}

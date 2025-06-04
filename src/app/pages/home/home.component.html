@@ -1,0 +1,52 @@
+<section class="home-wrapper">
+
+    <header class="home-header">
+
+        <div class="header-title-container">
+            <h1>Invoices</h1>
+            @if (invoices.length) {
+            <p>There are {{invoices.length}} total invoices</p>
+            }
+            @else {
+            <p>No invoices</p>
+            }
+        </div>
+
+        <div class="action-container">
+            <button class="filter-button">
+                <span>Filter by status</span>
+                <img src="assets/image/icon-arrow-down.svg" alt="show more Icon" />
+            </button>
+            <button class="add-button">
+                <div class="icon-container">
+                    <img src="assets/image/icon-plus.svg" alt="add Icon" />
+                </div>
+                <span>New Invoice</span>
+            </button>
+        </div>
+
+    </header>
+
+    <ng-template  [ngIf]="invoices.length > 0">
+        <div class="list-container">
+            @for (invoice of invoices; track $index) {
+            <app-invoice-list-item [invoice]="invoice"></app-invoice-list-item>
+            }
+        </div>
+    </ng-template>
+
+    <ng-template  [ngIf]="invoices.length == 0">
+        <div class="empty-container">
+
+            <img src="assets/image/illustration-empty.svg" alt="empty Icon" />
+
+            <div class="empty-text-container">
+                <h2>There is nothing here</h2>
+                <p>Create an invoice by clicking the <strong> New Invoice</strong> button and get started</p>
+            </div>
+
+        </div>
+    </ng-template>
+
+
+</section>

@@ -1,0 +1,7 @@
+<a href="/invoice/{{invoice.id}}" class="invoice-item">
+    <p><span>#</span>{{invoice.id}}</p>
+    <p><span>Due</span>{{invoice.paymentDue | date : 'dd MM yyyy'}}</p>
+    <p>{{invoice.clientName}}</p>
+    <p>{{invoice.total}}</p>
+    <p>{{invoice.status}}</p>
+</a>
