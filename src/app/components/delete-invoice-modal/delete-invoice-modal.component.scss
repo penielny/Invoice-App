@@ -1,0 +1,70 @@
+@use './../../../styles/mixins' as *;
+
+.delete-modal-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.464);
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    width: 480px;
+    border-radius: 8px;
+    background-color: white;
+    padding: 48px;
+}
+
+.modal-content h1 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 32px;
+    letter-spacing: -0.5px;
+    color: #0C0E16;
+}
+
+.modal-content p {
+    color: #888EB0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 22px;
+    letter-spacing: -0.25px;
+}
+
+.discard-btn {
+    @include light-blue-12;
+    background-color: #F9FAFE;
+    color: #7E88C3;
+    border: none;
+    font-weight: bold;
+    padding: 17px 23px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.delete-btn {
+    @include light-blue-12;
+    background-color: #EC5757;
+    color: #FFF;
+    border: none;
+    font-weight: bold;
+    padding: 17px 23px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.modal-content div {
+    display: flex;
+    gap: 8px;
+    justify-content: end;
+    width: 100%;
+}

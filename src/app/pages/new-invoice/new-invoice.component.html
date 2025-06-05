@@ -1,1 +1,122 @@
-<p>new-invoice works!</p>
+<div class="new-invoice-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="wrapper-content">
+        <h1 class="form-title">New Invoice</h1>
+        <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="form-container">
+            <section class="group-container">
+                <h2>Bill From</h2>
+                <div class="col-group">
+                    <label for="">Street Address</label>
+                    <input type="text" />
+                </div>
+                <div class="row-group">
+                    <div class="col-group">
+                        <label for="">City</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Post Code</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Country</label>
+                        <input type="text" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="group-container">
+                <h2>Bill To</h2>
+                <div class="col-group">
+                    <label for="">Client’s Name</label>
+                    <input type="text" />
+                </div>
+                <div class="col-group">
+                    <label for="">Client’s Email</label>
+                    <input type="text" />
+                </div>
+                <div class="col-group">
+                    <label for="">Street Address</label>
+                    <input type="text" />
+                </div>
+                <div class="row-group">
+                    <div class="col-group">
+                        <label for="">City</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Post Code</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Country</label>
+                        <input type="text" />
+                    </div>
+                </div>
+
+                <section class="group-container">
+                    <div class="row-group">
+                        <div class="col-group">
+                            <label for="">Invoice Date</label>
+                            <input type="text" />
+                        </div>
+                        <div class="col-group">
+                            <label for="">Payment Terms</label>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="col-group">
+                        <label for="">Project Description</label>
+                        <input type="text" />
+                    </div>
+                </section>
+
+            </section>
+            <section class="group-container">
+                <h2>Item List</h2>
+                <div>
+                    <h3>Item Name</h3>
+                    <h3>Qty.</h3>
+                    <h3>Price</h3>
+                    <h3>Total</h3>
+                </div>
+                <div>
+                    <div class="col-group">
+                        <label for="">Invoice Date</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Payment Terms</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Payment Terms</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Payment Terms</label>
+                        <input type="text" />
+                    </div>
+                </div>
+
+                <button type="button">
+                    + Add New Item
+                </button>
+            </section>
+        </form>
+        <section class="form-action">
+            <button (click)="close()" class="discard-btn">
+                Discard
+            </button>
+
+            <div class="save-btn-container">
+                <button class="save-draft">
+                    Save as Draft
+                </button>
+                <button class="save-send">
+                    Save & Send
+                </button>
+            </div>
+        </section>
+    </section>
+</div>
