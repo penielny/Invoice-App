@@ -134,8 +134,7 @@ input {
     border: 1px solid #DFE3FA;
 }
 
-.item-list-header,
-.list-item-data {
+.item-list-header, .list-item-data {
     display: grid;
     grid-template-columns: 3fr 1fr 2fr 2fr;
     gap: 16px;

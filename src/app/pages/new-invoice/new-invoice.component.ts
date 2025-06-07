@@ -153,6 +153,7 @@ export class NewInvoiceComponent implements OnInit {
       this.invoiceService.add(this.invoiceForm.value)
       console.log("submit sent", this.invoiceForm.controls)
       this.invoiceForm.reset()
+      this.close()
     } else {
       console.error("form error", this.invoiceForm.errors)
 

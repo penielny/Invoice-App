@@ -96,12 +96,10 @@
             <section class="group-container">
                 <h2>Item List</h2>
                 <div class="item-list-header">
-                    <div>
-                        <h3>Item Name</h3>
-                        <h3>Qty.</h3>
-                        <h3>Price</h3>
-                        <h3>Total</h3>
-                    </div>
+                    <h3>Item Name</h3>
+                    <h3>Qty.</h3>
+                    <h3>Price</h3>
+                    <h3>Total</h3>
                 </div>
                 <div formArrayName="items">
                     <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="list-item-data">
