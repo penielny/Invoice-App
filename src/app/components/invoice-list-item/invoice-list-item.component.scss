@@ -1,9 +1,127 @@
-.invoice-item{
+@use './../../../styles/mixins' as *;
+
+.status-container {
+    height: 40px;
     display: flex;
     flex-direction: row;
-    padding: 10px;
-    border: 1px solid #ccc;
+    align-items: center;
+    padding-left: 18px;
+    padding-right: 17px;
+    padding-top: 13px;
+    padding-bottom: 12px;
+    gap: 8px;
+    border-radius: 6px;
+}
+
+.invoice-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 0;
+    border: 1px solid #cccccc3f;
     border-radius: 5px;
     margin-bottom: 10px;
     width: 100%;
+    padding-left: 32px;
+    padding-right: 24px;
+    background-color: #FFFFFF;
+    box-shadow: #0c0e16bc;
+}
+
+.invoice-item:hover {
+    border: 1px solid #7C5DFA;
+}
+
+.status-container .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-container .status {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    font-weight: bold;
+    text-transform: capitalize;
+
+}
+
+
+.pending-text {
+    color: #FF8F00;
+}
+
+.draft-text {
+    color: #373B53;
+}
+
+.paid-text {
+    color: #33D69F;
+}
+
+.pending-bg {
+    background-color: #FF8F00;
+}
+
+.draft-bg {
+    background-color: #373B53;
+}
+
+.paid-bg {
+    background-color: #33D69F;
+}
+
+.pending-bg-w-opacity {
+    background-color: rgba(255, 143, 0, 0.05071);
+}
+
+.draft-bg-w-opacity {
+    background-color: rgba(55, 59, 83, 0.05071);
+}
+
+.paid-bg-w-opacity {
+    background-color: rgba(51, 214, 159, 0.05071);
+}
+
+.status-w-arrow-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+}
+
+.col:nth-child(1) {
+    font-weight: bold;
+    font-size: 12px;
+    color: #0C0E16;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+}
+
+.hashtag {
+    color: #7E88C3;
+}
+
+.col {
+    @include light-blue-12 ;
+    flex: 1;
+    flex-shrink: 0;
+}
+
+.col:nth-child(4) {
+    text-align: end;
+    font-weight: bold;
+    font-size: 16px;
+    color: #0C0E16;
+    line-height: 24px;
+    letter-spacing: -0.8px;
+}
+
+
+.col:nth-last-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 }
