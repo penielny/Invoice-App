@@ -1,24 +1,24 @@
 @use './../../../styles/mixins' as *;
 
 
-.new-invoice-wrapper{
+.new-invoice-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     display: flex;
-    background-color: rgba(0, 0, 0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-app-sidebar{
+app-sidebar {
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
+
 }
 
-.wrapper-content{
+.wrapper-content {
     background-color: #fff;
     width: 616px;
     height: 100vh;
@@ -30,11 +30,11 @@ app-sidebar{
     overflow: hidden;
 }
 
-.form-container{
+.form-container {
     flex: 1;
 }
 
-.form-action{
+.form-action {
     background-color: #fff;
     padding: 31px 56px;
     display: flex;
@@ -54,13 +54,15 @@ app-sidebar{
     cursor: pointer;
     border-radius: 24px;
 }
-.save-btn-container{
+
+.save-btn-container {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.save-draft{
- @include light-blue-12;
+
+.save-draft {
+    @include light-blue-12;
     background-color: #373B53;
     color: #888EB0;
     border: none;
@@ -70,8 +72,8 @@ app-sidebar{
     border-radius: 24px;
 }
 
-.save-send{
-     @include light-blue-12;
+.save-send {
+    @include light-blue-12;
     background-color: #7C5DFA;
     color: #FFFFFF;
     border: none;
@@ -81,48 +83,159 @@ app-sidebar{
     border-radius: 24px;
 
 }
-
-.form-title{
+.form-title {
     padding-left: 56px;
     padding-top: 56px;
     margin-bottom: 48px;
 }
 
-.form-container{
+
+.form-container {
     padding: 0 56px;
     display: flex;
     flex-direction: column;
+    gap: 48px;
 }
 
-.form-container h2{
-@include light-blue-12;
+.form-container h2 {
+    @include light-blue-12;
 }
-.group-container{
+
+.group-container {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
+
 .col-group {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
 }
-.row-group{
+
+.row-group {
     display: flex;
     align-items: center;
-    overflow: hidden;
     gap: 24px;
-    
 }
-.row-group col-group{
-    flex:1;
+
+.row-group col-group {
+    flex: 1;
 }
-.form-container{
+
+.form-container {
     overflow-y: auto;
 }
 
-input{
-    padding: 16px 20px;
+input {
+    padding: 16px 16px;
     border-radius: 4px;
     border: 1px solid #DFE3FA;
 }
+
+.item-list-header,
+.list-item-data {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr 2fr;
+    gap: 16px;
+    padding-top: 10px
+}
+
+.item-list-header h3 {
+    @include light-blue-12;
+    font-weight: normal;
+}
+
+input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+input:focus {
+    border: 1px solid #7E88C3;
+}
+
+.add-invoice-item {
+    @include light-blue-12;
+    background-color: #F9FAFE;
+    color: #7E88C3;
+    border: none;
+    font-weight: bold;
+    padding: 17px 23px;
+    cursor: pointer;
+    border-radius: 24px;
+    margin-bottom: 24px;
+}
+
+label {
+    @include light-blue-12;
+}
+
+.custom-drop-down {
+    height: 100%;
+    width: 100%;
+    padding: 17px 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border: 1px solid #DFE3FA;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.payment-term-container {
+    position: relative;
+}
+
+.dropdowm-container {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    background-color: #FFFFFF;
+    height: fit-content;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.172);
+    border-radius: 4px;
+    top: 80px;
+    z-index: 20;
+    box-shadow: #373b53cc;
+
+    button {
+        @include light-blue-12;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        align-items: start;
+        color: #0C0E16;
+        font-weight: bold;
+        padding: 16px 24px;
+        cursor: pointer;
+    }
+
+    .border-b {
+        border-bottom: 1px solid #DFE3FA;
+    }
+
+    button:hover {
+        color: #7C5DFA;
+    }
+}
+
+@media(max-width: 1024px) {
+    .new-invoice-wrapper{
+        flex-direction: column;
+    }
+    .wrapper-content {
+        position: absolute;
+        padding-left: 0px;
+        height: 90vh;
+        max-width: 80vw;
+        bottom: 0;
+        left: 0;
+    }
+
+}
+

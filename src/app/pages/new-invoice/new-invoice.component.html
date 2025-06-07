@@ -2,25 +2,25 @@
     <app-sidebar></app-sidebar>
     <section class="wrapper-content">
         <h1 class="form-title">New Invoice</h1>
-        <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="form-container">
-            <section class="group-container">
+        <form #newForm [formGroup]="invoiceForm" (ngSubmit)="onSubmit($event)" class="form-container">
+            <section formGroupName="senderAddress" class="group-container">
                 <h2>Bill From</h2>
                 <div class="col-group">
                     <label for="">Street Address</label>
-                    <input type="text" />
+                    <input formControlName="street" type="text" />
                 </div>
                 <div class="row-group">
                     <div class="col-group">
                         <label for="">City</label>
-                        <input type="text" />
+                        <input formControlName="city" type="text" />
                     </div>
                     <div class="col-group">
                         <label for="">Post Code</label>
-                        <input type="text" />
+                        <input formControlName="postCode" type="text" />
                     </div>
                     <div class="col-group">
                         <label for="">Country</label>
-                        <input type="text" />
+                        <input formControlName="country" type="text" />
                     </div>
                 </div>
             </section>
@@ -29,28 +29,28 @@
                 <h2>Bill To</h2>
                 <div class="col-group">
                     <label for="">Client’s Name</label>
-                    <input type="text" />
+                    <input formControlName="clientName" type="text" />
                 </div>
                 <div class="col-group">
                     <label for="">Client’s Email</label>
-                    <input type="text" />
+                    <input formControlName="clientEmail" type="text" />
                 </div>
-                <div class="col-group">
+                <div formGroupName="clientAddress" class="col-group">
                     <label for="">Street Address</label>
-                    <input type="text" />
+                    <input formControlName="street" type="text" />
                 </div>
-                <div class="row-group">
+                <div class="row-group" formGroupName="clientAddress">
                     <div class="col-group">
                         <label for="">City</label>
-                        <input type="text" />
+                        <input formControlName="city" type="text" />
                     </div>
                     <div class="col-group">
                         <label for="">Post Code</label>
-                        <input type="text" />
+                        <input formControlName="postCode" type="text" />
                     </div>
                     <div class="col-group">
                         <label for="">Country</label>
-                        <input type="text" />
+                        <input formControlName="country" type="text" />
                     </div>
                 </div>
 
@@ -58,28 +58,68 @@
                     <div class="row-group">
                         <div class="col-group">
                             <label for="">Invoice Date</label>
-                            <input type="text" />
+
+                            <input formControlName="paymentDue" type="date" />
                         </div>
-                        <div class="col-group">
+                        <div class="col-group payment-term-container">
                             <label for="">Payment Terms</label>
-                            <input type="text" />
+                            <button (click)="toggleShowTerm()" type="button" class="custom-drop-down">
+                                <span>
+                                    {{ getSelectedTermLabel() }}
+                                </span>
+                                <img src="assets/image/icon-arrow-down.svg" />
+                            </button>
+                            <ng-template [ngIf]="showPaymentTerm">
+
+                                <div class="dropdowm-container">
+                                    @for (term of paymentTerms; track $index) {
+                                    <button (click)="setSelectedTerm(term.id)" type="button"
+                                        class="custom-drop-down-item" [ngClass]="{
+                                        'border-b': term.id != 4
+                                        }">
+                                        <span>{{term.label}}</span>
+                                    </button>
+                                    }
+
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                     <div class="col-group">
                         <label for="">Project Description</label>
-                        <input type="text" />
+                        <input formControlName="description" type="text" />
                     </div>
                 </section>
 
             </section>
             <section class="group-container">
                 <h2>Item List</h2>
+                <div class="item-list-header">
                 <div>
                     <h3>Item Name</h3>
                     <h3>Qty.</h3>
                     <h3>Price</h3>
                     <h3>Total</h3>
                 </div>
+                <div formArrayName="items">
+                    <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="list-item-data">
+                        <div class="col-group">
+                            <input formControlName="name" type="text" />
+                        </div>
+                        <div class="col-group">
+                            <input formControlName="quantity" type="number" type="text" />
+                        </div>
+                        <div class="col-group">
+                            <input formControlName="price" type="number" type="text" />
+                        </div>
+                        <div class="col-group">
+                            <input formControlName="total" type="text" [disabled]="true" />
+                        </div>
+                    </div>
+                </div>
+
+                <button (click)="addItem()" type="button" class="add-invoice-item">
+
                 <div>
                     <div class="col-group">
                         <label for="">Invoice Date</label>
@@ -110,13 +150,13 @@
             </button>
 
             <div class="save-btn-container">
-                <button class="save-draft">
+                <button (click)="onSaveDraft()" class="save-draft">
                     Save as Draft
                 </button>
-                <button class="save-send">
-                    Save & Send
-                </button>
+                <button (click)="onSaveAndSend()" class="save-send">
             </div>
         </section>
     </section>
+
 </div>
+

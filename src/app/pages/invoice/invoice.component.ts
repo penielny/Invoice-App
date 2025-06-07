@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Invoice } from '../../interfaces/invoice';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common';
@@ -7,7 +7,7 @@ import { DeleteInvoiceModalComponent } from '../../components/delete-invoice-mod
 
 @Component({
   selector: 'app-invoice',
-  imports: [CommonModule, DeleteInvoiceModalComponent],
+  imports: [CommonModule, DeleteInvoiceModalComponent,RouterLink],
   templateUrl: './invoice.component.html',
   styleUrl: './invoice.component.scss'
 })

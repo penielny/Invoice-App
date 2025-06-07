@@ -29,7 +29,7 @@ export class InvoiceService {
 
   add(invoice: Invoice): void {
     const currentInvoices = this.invoicesSubject.getValue();
-    const newInvoices = [...currentInvoices, invoice];
+    const newInvoices = [invoice,...currentInvoices];
     this.invoicesSubject.next(newInvoices);
   }
 
