@@ -92,14 +92,16 @@
                 </section>
 
             </section>
+
             <section class="group-container">
                 <h2>Item List</h2>
                 <div class="item-list-header">
-                <div>
-                    <h3>Item Name</h3>
-                    <h3>Qty.</h3>
-                    <h3>Price</h3>
-                    <h3>Total</h3>
+                    <div>
+                        <h3>Item Name</h3>
+                        <h3>Qty.</h3>
+                        <h3>Price</h3>
+                        <h3>Total</h3>
+                    </div>
                 </div>
                 <div formArrayName="items">
                     <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="list-item-data">
@@ -119,31 +121,11 @@
                 </div>
 
                 <button (click)="addItem()" type="button" class="add-invoice-item">
-
-                <div>
-                    <div class="col-group">
-                        <label for="">Invoice Date</label>
-                        <input type="text" />
-                    </div>
-                    <div class="col-group">
-                        <label for="">Payment Terms</label>
-                        <input type="text" />
-                    </div>
-                    <div class="col-group">
-                        <label for="">Payment Terms</label>
-                        <input type="text" />
-                    </div>
-                    <div class="col-group">
-                        <label for="">Payment Terms</label>
-                        <input type="text" />
-                    </div>
-                </div>
-
-                <button type="button">
                     + Add New Item
                 </button>
             </section>
         </form>
+
         <section class="form-action">
             <button (click)="close()" class="discard-btn">
                 Discard
@@ -154,9 +136,9 @@
                     Save as Draft
                 </button>
                 <button (click)="onSaveAndSend()" class="save-send">
+                    Save & send
+                </button>
             </div>
         </section>
     </section>
-
 </div>
-

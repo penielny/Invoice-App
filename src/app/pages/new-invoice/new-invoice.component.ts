@@ -14,33 +14,9 @@ import { InvoiceService } from '../../services/invoice.service';
   styleUrl: './new-invoice.component.scss'
 })
 export class NewInvoiceComponent implements OnInit {
-onSubmit() {
-throw new Error('Method not implemented.');
-}
 
   private formBuilder = inject(FormBuilder);
   invoiceForm!: FormGroup;
-
-  constructor(private router: Router) { }
-
-  get items(): FormArray {
-    return this.invoiceForm.get('items') as FormArray;
-  }
-
-  addItem(): void {
-    this.items.push(
-      this.formBuilder.group({
-        name: [''],
-        quantity: [1],
-        price: [0],
-        total: [0],
-      })
-    );
-  }
-
-  close() {
-    this.router.navigate([{ outlets: { modal: null } }]);
-  }
 
   ngOnInit(): void {
     this.invoiceForm = this.formBuilder.group({
@@ -80,10 +56,8 @@ throw new Error('Method not implemented.');
       total: [1800.90],
     })
   }
-
-  private formBuilder = inject(FormBuilder);
+  
   private invoiceService = inject(InvoiceService)
-  invoiceForm!: FormGroup;
   paymentTerms: paymentTerm[] = [
     {
       id: 1,
