@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Invoice } from '../../interfaces/invoice';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-invoice',
-  imports: [CommonModule],
+  imports: [CommonModule, DeleteInvoiceModalComponent,RouterLink],
   templateUrl: './invoice.component.html',
   styleUrl: './invoice.component.scss'
 })

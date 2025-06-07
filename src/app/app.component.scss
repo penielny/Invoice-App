@@ -7,3 +7,9 @@
     flex: 1;
     overflow: hidden;
 }
+
+@media(max-width: 1024px) {
+  .app-wrapper{
+    flex-direction: column;
+  }
+}

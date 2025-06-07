@@ -1,4 +1,3 @@
-
 .sidebar-wrapper {
     background-color: #373B53;
     width: 103px;
@@ -11,7 +10,7 @@
     overflow: hidden;
 }
 
-.logo-container{
+.logo-container {
     width: 103px;
     height: 103px;
     background-color: #7C5DFA;
@@ -22,7 +21,8 @@
     justify-content: center;
     overflow: hidden;
 }
-.logo-button-bg{
+
+.logo-button-bg {
     position: absolute;
     bottom: 0;
     background-color: #9277FF;
@@ -31,6 +31,7 @@
     right: 0;
     border-top-left-radius: 20px;
 }
+
 .footer-container {
     display: flex;
     flex-direction: column;
@@ -51,7 +52,7 @@
     margin-bottom: 32.1px;
 }
 
-.toggle-icon{
+.toggle-icon {
     height: 19.99px;
     width: 19.9px;
 }
@@ -61,8 +62,51 @@
     border: 1px solid #494E6E;
 }
 
-.logo{
+.logo {
     z-index: 10;
     width: 40px;
     height: 37.71px;
+}
+
+button {
+    cursor: pointer;
+}
+
+@media(max-width: 1024px) {
+
+    .sidebar-wrapper {
+        width: 100vw;
+        height: 80px;
+        flex-direction: row;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+        padding-right: 32px;
+    }
+
+    .hr {
+        height: 100%;
+    }
+
+    .darkmode-toggle .toggle-button {
+
+        margin-bottom: 0px;
+    }
+    .sidebar-wrapper{
+        border-radius: 0%;
+    }
+
+    .logo-container{
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+         height:100%;
+         width: 80px;
+        overflow: hidden;
+    }
+
+
 }

@@ -26,3 +26,9 @@ export interface Invoice {
   items: InvoiceItem[];
   total: number;
 }
+
+
+export interface paymentTerm{
+  id:number,
+  label:string;
+}
