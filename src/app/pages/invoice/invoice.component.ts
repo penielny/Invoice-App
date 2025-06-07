@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Invoice } from '../../interfaces/invoice';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common';
+import { DeleteInvoiceModalComponent } from '../../components/delete-invoice-modal/delete-invoice-modal.component';
 
 @Component({
   selector: 'app-invoice',
@@ -13,9 +14,17 @@ import { CommonModule } from '@angular/common';
 export class InvoiceComponent implements OnInit {
 
   invoice!: Invoice;
+  showModal: Boolean = false;
 
   constructor(private route: ActivatedRoute, private invoiceService: InvoiceService) { }
 
+  onDelete(){
+    this.showModal = true;
+  }
+
+  onClose(){
+    this.showModal = false;
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

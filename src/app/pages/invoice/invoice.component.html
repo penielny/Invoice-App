@@ -32,7 +32,7 @@
 
             <div class="actions-container">
                 <button class="action-button neutral">Edit</button>
-                <button class="action-button danger">Delete</button>
+                <button (click)="onDelete()" class="action-button danger">Delete</button>
                 <button class="action-button primary">Mark as Paid</button>
             </div>
 
@@ -120,4 +120,9 @@
         </section>
 
     </div>
+    <app-delete-invoice-modal
+     *ngIf="showModal" 
+  [id]="invoice.id" 
+  (close)="onClose()"
+    ></app-delete-invoice-modal>
 </div>

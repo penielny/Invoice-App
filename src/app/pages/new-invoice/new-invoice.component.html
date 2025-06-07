@@ -58,6 +58,7 @@
                     <div class="row-group">
                         <div class="col-group">
                             <label for="">Invoice Date</label>
+
                             <input formControlName="paymentDue" type="date" />
                         </div>
                         <div class="col-group payment-term-container">
@@ -94,6 +95,7 @@
             <section class="group-container">
                 <h2>Item List</h2>
                 <div class="item-list-header">
+                <div>
                     <h3>Item Name</h3>
                     <h3>Qty.</h3>
                     <h3>Price</h3>
@@ -117,6 +119,27 @@
                 </div>
 
                 <button (click)="addItem()" type="button" class="add-invoice-item">
+
+                <div>
+                    <div class="col-group">
+                        <label for="">Invoice Date</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Payment Terms</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Payment Terms</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-group">
+                        <label for="">Payment Terms</label>
+                        <input type="text" />
+                    </div>
+                </div>
+
+                <button type="button">
                     + Add New Item
                 </button>
             </section>
@@ -131,9 +154,9 @@
                     Save as Draft
                 </button>
                 <button (click)="onSaveAndSend()" class="save-send">
-                    Save & Send
-                </button>
             </div>
         </section>
     </section>
+
 </div>
+
