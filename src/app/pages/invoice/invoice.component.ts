@@ -29,6 +29,13 @@ export class InvoiceComponent implements OnInit {
   onClose() {
     this.showModal = false;
   }
+  onMarkAsPaid(){
+    const inv_updated:Invoice = {
+      ...this.invoice,
+      status: "paid"
+    }
+   this.invoice = this.invoiceService.update(inv_updated)
+  }
 
   ngOnInit() {
 

@@ -35,18 +35,19 @@ export class InvoiceService {
     this.invoicesSubject.next(newInvoices);
   }
 
-  update(invoice: Invoice): void {
+  update(invoice: Invoice): Invoice {
     const currentInvoices = this.invoicesSubject.getValue();
     const toBeUpdatedInvoice = currentInvoices.filter(inv => inv.id === invoice.id)[0];
     if (!toBeUpdatedInvoice) {
       console.error('Invoice not found for update:', invoice.id);
-      return;
+      return toBeUpdatedInvoice;
     }
     const updatedInvoices = currentInvoices.map(inv =>
       inv.id === invoice.id ? { ...inv, ...invoice } : inv
     );
     localStorage.setItem('invoice-app-default-value',JSON.stringify(updatedInvoices))
     this.invoicesSubject.next(updatedInvoices);
+    return updatedInvoices.filter(inv => inv.id === invoice.id)[0];
   }
 
   delete(id: string): void {

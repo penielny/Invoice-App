@@ -33,7 +33,7 @@
             <div class="actions-container">
                 <button (click)="onEdit()" class="action-button neutral ">Edit</button>
                 <button (click)="onDelete()" class="action-button danger ">Delete</button>
-                <button class="action-button primary ">Mark as Paid</button>
+                <button (click)="onMarkAsPaid()" [disabled]="invoice.status !== 'pending'" class="action-button primary ">Mark as Paid</button>
             </div>
 
         </section>
