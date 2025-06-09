@@ -1,59 +1,101 @@
-# InvoiceApp
+# 🧾 Invoice App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+A simple Angular application to create, view, edit, and delete invoices. Built with standalone components, Angular routing, and service-based state management.
 
-## Development server
 
-To start a local development server, run:
+---
+
+## 📦 Project Description
+
+The **Invoice App** is a lightweight Angular SPA (Single Page Application) for managing invoices. It includes features like viewing invoice details, editing, and deletion through a modal interface. It demonstrates clean component design, route handling, local storage fallback, and form-driven input validation.
+
+
+---
+## 🚀 Setup & Run Instructions
+
+### 1. Clone the Repository
 
 ```bash
+git clone https://github.com/penielny/Invoice-App
+cd invoice-app
+
+## 1. Install Dependencies
+npm install
+
+## 2. Development server
 ng serve
 ```
-
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## ✨ Application Features
+✅ View invoice details
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+✏️ Edit invoice with prefilled form
 
-```bash
-ng generate component component-name
+❌ Delete invoice with confirmation modal
+
+💾 Save and fetch invoices from local storage
+
+🔁 Client-side routing with deep link support
+
+🧪 Form validation with user-friendly error handling
+
+
+## 🧱 Component Structure
 ```
+src/
+├── app/
+│   ├── components/
+│   │   └── delete-invoice-modal/
+│   │   └── invoice-list-item/
+│   │   └── drawer-modal-layout/
+│   │   └── sidebar/
+│   ├── pages/
+│   │   └── home/
+│   │   └── invoice/
+│   │   └── new-invoice/
+│   │   └── edit-invoice/
+│   ├── services/
+│   │   └── invoice.service.ts
+│   ├── interfaces/
+│   │   └── invoice.ts
+│   └── app.routes.ts
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
 ```
+---
 
-## Building
+## 🔀 Routing Overview
 
-To build the project run:
-
-```bash
-ng build
+The app uses Angular Router for navigation. Key routes include:
 ```
+/ — redirect to /invoice
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+/invoices — list all invoices
 
-## Running unit tests
+/invoice/:id — View invoice details by ID
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+/invoice/123(modal:invoice/:id/edit) — Edit invoice in a modal outlet
 
-```bash
-ng test
+/invoices(modal:invoice/new) — Creat invoice in a modal outlet
 ```
+Make sure to configure fallback routes (e.g., with _redirects file on Netlify) to handle client-side routing properly on page reloads.
 
-## Running end-to-end tests
+---
+## 📝 Form Implementation
+Uses Reactive Forms with FormBuilder
 
-For end-to-end (e2e) testing, run:
+Includes validation for required fields like client name, amount, and due date
 
-```bash
-ng e2e
-```
+Handles error display for user-friendly feedback
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Submits data back to the service for updating invoice records
 
-## Additional Resources
+---
+## 🔁 Git Workflow
+Branching Strategy
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+main – Stable production branch
+
+dev – Development/integration branch
+
+feature/* – New features or changes
