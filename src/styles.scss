@@ -18,3 +18,14 @@ body {
     width: 100vw;
     overflow: hidden;
 }
+
+.hide-md{
+     display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+ .rem-sm{
+    display: none;
+ }
+}

@@ -1,15 +1,7 @@
-<div class="new-invoice-wrapper">
-    <app-sidebar></app-sidebar>
-    <section class="wrapper-content">
+<app-drawer-modal-layout>
+    <form #newForm [formGroup]="invoiceForm" (ngSubmit)="onSubmit($event)" class="form-container">
+   <h1 class="form-title">Edit <span class="hash-tag">#</span>{{invoice.id}}</h1>
 
-        <form #newForm [formGroup]="invoiceForm" (ngSubmit)="onSubmit($event)" class="form-container">
-            <section class="navigation-conatiner">
-                <a [routerLink]="['/']" class="back-link rem-md">
-                    <img class="back-icon" src="assets/image/icon-arrow-left.svg" alt="back image" />
-                    <p> Go back</p>
-                </a>
-                <h1 class="form-title">New Invoice</h1>
-            </section>
             <section formGroupName="senderAddress" class="group-container">
                 <h2>Bill From</h2>
                 <div class="col-group">
@@ -132,18 +124,16 @@
         </form>
 
         <section class="form-action">
-            <button (click)="close()" class="discard-btn">
-                Discard
-            </button>
+            <div></div>
 
             <div class="save-btn-container">
-                <button (click)="onSaveDraft()" class="save-draft">
-                    Save as Draft
-                </button>
-                <button (click)="onSaveAndSend()" class="save-send">
-                    Save & send
+                <button (click)="close()" class="discard-btn">
+                cancel
+            </button>
+                <button (click)="onSave()" class="save-send">
+                    Save Changes
                 </button>
             </div>
         </section>
-    </section>
-</div>
+        
+</app-drawer-modal-layout>

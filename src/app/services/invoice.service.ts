@@ -13,9 +13,10 @@ export class InvoiceService {
   public invoices$: Observable<Invoice[]> = this.invoicesSubject.asObservable();
 
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.load()
   }
+
 
   get(id: string): Invoice | undefined {
     const currentInvoices = this.invoicesSubject.getValue();
@@ -29,7 +30,8 @@ export class InvoiceService {
 
   add(invoice: Invoice): void {
     const currentInvoices = this.invoicesSubject.getValue();
-    const newInvoices = [invoice,...currentInvoices];
+    const newInvoices = [invoice, ...currentInvoices];
+    localStorage.setItem('invoice-app-default-value',JSON.stringify(newInvoices))
     this.invoicesSubject.next(newInvoices);
   }
 
@@ -43,16 +45,25 @@ export class InvoiceService {
     const updatedInvoices = currentInvoices.map(inv =>
       inv.id === invoice.id ? { ...inv, ...invoice } : inv
     );
+    localStorage.setItem('invoice-app-default-value',JSON.stringify(updatedInvoices))
     this.invoicesSubject.next(updatedInvoices);
   }
 
   delete(id: string): void {
     const currentInvoices = this.invoicesSubject.getValue();
     const updatedInvoices = currentInvoices.filter(inv => inv.id !== id);
+    localStorage.setItem('invoice-app-default-value',JSON.stringify(updatedInvoices))
     this.invoicesSubject.next(updatedInvoices);
   }
 
   load(): Invoice[] {
+    const localDataStr = localStorage.getItem('invoice-app-default-value')
+    if (localDataStr) {
+      const dataObject: Invoice[] = JSON.parse(localDataStr)
+      this.invoicesSubject.next(dataObject);
+      return dataObject;
+    }
+
     this.http.get<Invoice[]>('assets/data/data.json').subscribe({
       next: (data) => {
         this.invoicesSubject.next(data);

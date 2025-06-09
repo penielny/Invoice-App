@@ -1,23 +1,24 @@
-
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
-import { Router, RouterLink } from '@angular/router';
-import { Form, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgClass, NgFor, NgForOf, NgIf } from '@angular/common';
-import { paymentTerm } from '../../interfaces/invoice';
-import { InvoiceService } from '../../services/invoice.service';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { DrawerModalLayoutComponent } from "../../components/drawer-modal-layout/drawer-modal-layout.component";
+import { NgClass, NgFor, NgForOf, NgIf } from '@angular/common';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InvoiceService } from '../../services/invoice.service';
+import { Invoice, paymentTerm } from '../../interfaces/invoice';
 
 @Component({
-  selector: 'app-new-invoice',
-  imports: [SidebarComponent,RouterLink, ReactiveFormsModule, NgFor, NgForOf, NgClass, NgIf],
-  templateUrl: './new-invoice.component.html',
-  styleUrl: './new-invoice.component.scss'
+  selector: 'app-edit-invoice',
+  imports: [DrawerModalLayoutComponent, NgFor, NgForOf, NgClass, NgIf, ReactiveFormsModule],
+  templateUrl: './edit-invoice.component.html',
+  styleUrl: './edit-invoice.component.scss'
 })
-export class NewInvoiceComponent {
+export class EditInvoiceComponent {
+
+
 
   private formBuilder = inject(FormBuilder);
   invoiceForm!: FormGroup;
+  invoice!: Invoice;
 
   private invoiceService = inject(InvoiceService)
   paymentTerms: paymentTerm[] = [
@@ -43,36 +44,81 @@ export class NewInvoiceComponent {
 
   @ViewChild('newForm') formElementRef!: ElementRef<HTMLFormElement>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      const id = params['id'];
+      if (!id) router.navigate([""])
+      let invoice: Invoice | undefined = this.invoiceService.get(id)
+      if (invoice) {
+        this.invoice = invoice
+        this.buildForm(invoice)
+      } else {
+        router.navigate([""])
+      }
+    });
+
+  }
+
+
+  buildForm(defaultValue: Invoice | undefined = undefined) {
+
     this.invoiceForm = this.formBuilder.group({
 
-      id: [this.generateUID()],
+      id: [defaultValue?.id || this.generateUID()],
       createdAt: [this.formatDate(new Date())],
-      paymentDue: [''],
-      description: ['', Validators.required],
-      paymentTerms: [1, Validators.required],
-      clientName: ['', Validators.required],
-      clientEmail: ['', [Validators.required, Validators.email]],
-      status: ['draft'],
+      paymentDue: [defaultValue?.paymentDue || ''],
+      description: [defaultValue?.description || '', Validators.required],
+      paymentTerms: [defaultValue?.paymentTerms || 1, Validators.required],
+      clientName: [defaultValue?.clientName || '', Validators.required],
+      clientEmail: [defaultValue?.clientEmail || '', [Validators.required, Validators.email]],
+      status: [defaultValue?.status || 'draft'],
 
       senderAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        postCode: [''],
-        country: [''],
+        street: [defaultValue?.senderAddress.street || ''],
+        city: [defaultValue?.senderAddress.city || ''],
+        postCode: [defaultValue?.senderAddress.postCode || ''],
+        country: [defaultValue?.senderAddress.country || ''],
       }),
 
       clientAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        postCode: [''],
-        country: [''],
+        street: [defaultValue?.clientAddress.street || ''],
+        city: [defaultValue?.clientAddress.city || ''],
+        postCode: [defaultValue?.clientAddress.postCode || ''],
+        country: [defaultValue?.clientAddress.country || ''],
       }),
 
-      items: this.formBuilder.array([],[Validators.minLength(1)]),
+      items: this.formBuilder.array(
+        (defaultValue?.items || []).map(item => {
+          const itemGroup = this.formBuilder.group({
+            name: [item.name, Validators.required],
+            quantity: [item.quantity, [Validators.required, Validators.min(1)]],
+            price: [item.price, Validators.required],
+            total: [item.total],
+          })
+          this.subscribeToPriceAndQuantityChanges(itemGroup);
+          return itemGroup
+        }
+        ),),
 
-      total: [],
+      total: [defaultValue?.total || 0],
     })
+  }
+
+  onSave() {
+    this.formElementRef.nativeElement.requestSubmit()
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    if (this.invoiceForm.valid) {
+      this.invoiceService.update(this.invoiceForm.value)
+      console.log("submit sent", this.invoiceForm.controls)
+      this.invoiceForm.reset()
+      this.close()
+    } else {
+      console.error("form error", this.invoiceForm.errors)
+
+    }
   }
 
   generateUID(): string {
@@ -94,6 +140,7 @@ export class NewInvoiceComponent {
     return `${year}-${month}-${day}`;
   }
 
+
   toggleShowTerm() {
     this.showPaymentTerm = !this.showPaymentTerm;
   }
@@ -108,19 +155,7 @@ export class NewInvoiceComponent {
     this.toggleShowTerm()
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
 
-    if (this.invoiceForm.valid) {
-      this.invoiceService.add(this.invoiceForm.value)
-      console.log("submit sent", this.invoiceForm.controls)
-      this.invoiceForm.reset()
-      this.close()
-    } else {
-      console.error("form error", this.invoiceForm.errors)
-
-    }
-  }
 
   onSaveDraft() {
     this.invoiceForm.get('status')?.setValue("draft")
@@ -153,8 +188,6 @@ export class NewInvoiceComponent {
   subscribeToPriceAndQuantityChanges(itemGroup: FormGroup) {
     itemGroup.get('quantity')!.valueChanges.subscribe(() => this.updateTotal(itemGroup));
     itemGroup.get('price')!.valueChanges.subscribe(() => this.updateTotal(itemGroup));
-
-    // Initialize total immediately
     this.updateTotal(itemGroup);
   }
 
@@ -169,6 +202,5 @@ export class NewInvoiceComponent {
   close() {
     this.router.navigate([{ outlets: { modal: null } }]);
   }
-
 
 }
