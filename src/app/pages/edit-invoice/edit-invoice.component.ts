@@ -45,9 +45,9 @@ export class EditInvoiceComponent {
   @ViewChild('newForm') formElementRef!: ElementRef<HTMLFormElement>;
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
-      const id = params['id'];
-      if (!id) router.navigate([""])
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) router.navigate([""])
+    else {
       let invoice: Invoice | undefined = this.invoiceService.get(id)
       if (invoice) {
         this.invoice = invoice
@@ -55,7 +55,7 @@ export class EditInvoiceComponent {
       } else {
         router.navigate([""])
       }
-    });
+    }
 
   }
 
@@ -111,7 +111,7 @@ export class EditInvoiceComponent {
   onSubmit(event: Event) {
     event.preventDefault();
     if (this.invoiceForm.valid) {
-      this.invoiceService.update(this.invoiceForm.value)
+      this.invoice = this.invoiceService.update(this.invoiceForm.value)
       console.log("submit sent", this.invoiceForm.controls)
       this.invoiceForm.reset()
       this.close()

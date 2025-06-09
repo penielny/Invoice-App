@@ -24,7 +24,7 @@ export const routes: Routes = [
         outlet:"modal"
     },
     {
-        path: "invoice/edit",
+        path: "invoice/:id/edit",
         component: EditInvoiceComponent,
         outlet:"modal"
     }

@@ -19,7 +19,7 @@ export class InvoiceComponent implements OnInit {
   constructor(private route: ActivatedRoute, private invoiceService: InvoiceService, private router: Router) { }
 
   onEdit() {
-    this.router.navigate([{ outlets: { modal: ['invoice', 'edit'] } }], { queryParams: { id: this.invoice.id } });
+    this.router.navigate([{ outlets: { modal: ['invoice',this.invoice.id, 'edit'] } }]);
   }
 
   onDelete() {

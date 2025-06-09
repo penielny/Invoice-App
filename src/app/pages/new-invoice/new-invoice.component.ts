@@ -118,7 +118,6 @@ export class NewInvoiceComponent {
       this.close()
     } else {
       console.error("form error", this.invoiceForm.errors)
-
     }
   }
 
