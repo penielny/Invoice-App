@@ -19,9 +19,16 @@ body {
     overflow: hidden;
 }
 
-.hide-md{
-     display: none;
+.shadow {
+  box-shadow: 0 4px 6px rgba(72, 84, 159, 0.1);
 }
+.shadow-md {
+  box-shadow: 0 6px 12px rgba(72, 84, 159, 0.1);
+}
+.shadow-lg {
+  box-shadow: 0 10px 20px rgba(72, 84, 159, 0.1);
+}
+
 
 @media screen and (max-width: 768px) {
 

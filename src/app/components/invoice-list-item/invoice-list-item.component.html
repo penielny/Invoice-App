@@ -1,4 +1,4 @@
-<a [routerLink]="['/invoice', invoice.id]" class="invoice-item rem-sm">
+<a [routerLink]="['/invoice', invoice.id]" class="invoice-item shadow rem-sm">
     <p class="col"><span class="hashtag">#</span>{{invoice.id}}</p>
     <p class="col"><span>Due</span>{{invoice.paymentDue | date : 'dd MM yyyy'}}</p>
     <p class="col">{{invoice.clientName}}</p>
