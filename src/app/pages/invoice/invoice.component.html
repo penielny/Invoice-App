@@ -30,7 +30,7 @@
             </div>
 
 
-            <div class="actions-container">
+            <div class="actions-container shadow">
                 <button (click)="onEdit()" class="action-button neutral ">Edit</button>
                 <button (click)="onDelete()" class="action-button danger ">Delete</button>
                 <button (click)="onMarkAsPaid()" [disabled]="invoice.status !== 'pending'" class="action-button primary ">Mark as Paid</button>

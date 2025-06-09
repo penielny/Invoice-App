@@ -30,8 +30,9 @@ export class InvoiceService {
 
   add(invoice: Invoice): void {
     const currentInvoices = this.invoicesSubject.getValue();
+    console.log(invoice.total)
     const newInvoices = [invoice, ...currentInvoices];
-    localStorage.setItem('invoice-app-default-value',JSON.stringify(newInvoices))
+    localStorage.setItem('invoice-app-default-value', JSON.stringify(newInvoices))
     this.invoicesSubject.next(newInvoices);
   }
 
@@ -45,7 +46,7 @@ export class InvoiceService {
     const updatedInvoices = currentInvoices.map(inv =>
       inv.id === invoice.id ? { ...inv, ...invoice } : inv
     );
-    localStorage.setItem('invoice-app-default-value',JSON.stringify(updatedInvoices))
+    localStorage.setItem('invoice-app-default-value', JSON.stringify(updatedInvoices))
     this.invoicesSubject.next(updatedInvoices);
     return updatedInvoices.filter(inv => inv.id === invoice.id)[0];
   }
@@ -53,7 +54,7 @@ export class InvoiceService {
   delete(id: string): void {
     const currentInvoices = this.invoicesSubject.getValue();
     const updatedInvoices = currentInvoices.filter(inv => inv.id !== id);
-    localStorage.setItem('invoice-app-default-value',JSON.stringify(updatedInvoices))
+    localStorage.setItem('invoice-app-default-value', JSON.stringify(updatedInvoices))
     this.invoicesSubject.next(updatedInvoices);
   }
 
