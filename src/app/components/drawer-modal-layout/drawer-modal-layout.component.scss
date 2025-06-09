@@ -1,0 +1,76 @@
+.new-invoice-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+app-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.wrapper-content {
+    background-color: #fff;
+    width: 616px;
+    height: 100vh;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 103px;
+    overflow: hidden;
+}
+
+@media(max-width: 1024px) {
+    .new-invoice-wrapper{
+        flex-direction: column;
+    }
+    app-sidebar{
+        position: fixed;
+    }
+    .wrapper-content {
+        position: absolute;
+        padding-left: 0px;
+        height: 90.4vh;
+        max-width: 85vw;
+        bottom: 0;
+        left: 0;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper-content {
+        position: absolute;
+        padding-left: 0px;
+        height: 90.4vh;
+        max-width: 100vw;
+        border-radius: 0%;
+    }
+
+    .rem-sm {
+        display: none;
+    }
+
+    .back-link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 23.66px;
+        color: #0C0E16;
+
+        p {
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 15px;
+            letter-spacing: -0.25px;
+        }
+    }
+
+}
