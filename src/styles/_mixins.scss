@@ -1,0 +1,28 @@
+@mixin action-button ($background-color , $color) {
+    padding-top: 17px;
+    padding-bottom: 16px;
+    padding-right: 23px;
+    padding-left: 24px;
+    border-radius: 24px;
+    border: none;
+    font-weight: bold;
+    background-color: $background-color;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    color: $color;
+}
+
+@mixin light-blue-11 {
+    color: #7E88C3;
+    font-size: 11px;
+    line-height: 18px;
+    letter-spacing: -0.23px;
+}
+
+@mixin light-blue-12 {
+    color: #7E88C3;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+}

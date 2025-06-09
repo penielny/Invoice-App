@@ -5,7 +5,7 @@
         <div class="header-title-container">
             <h1>Invoices</h1>
             @if (invoices.length) {
-            <p>There are {{invoices.length}} total invoices</p>
+            <p> <span class="rem-sm">There are</span> {{invoices.length}} <span class="rem-sm">total</span> invoices</p>
             }
             @else {
             <p>No invoices</p>
@@ -13,21 +13,32 @@
         </div>
 
         <div class="action-container">
-            <button class="filter-button">
-                <span>Filter by status</span>
-                <img src="assets/image/icon-arrow-down.svg" alt="show more Icon" />
-            </button>
-            <button class="add-button">
+            <div class="filter-button-container">
+                <button (click)="toggleFilter()" class="filter-button">
+                    <span>Filter <span class="rem-sm">by status</span></span>
+                    <img src="assets/image/icon-arrow-down.svg" alt="show more Icon" />
+                </button>
+                <div *ngIf="showFilterOption" class="filter-dowpdown">
+                    @for (status of paymentStatus; track $index) {
+                    <div class="filter-item">
+                        <input type="checkbox" [checked]="filteredStatus.includes(status.value)"
+                            (change)="onFilter(status.value)" />
+                        <label>{{status.label}}</label>
+                    </div>
+                    }
+                </div>
+            </div>
+            <button (click)="onNewInvoice()" class="add-button">
                 <div class="icon-container">
                     <img src="assets/image/icon-plus.svg" alt="add Icon" />
                 </div>
-                <span>New Invoice</span>
+                <span>New <span class="rem-sm">Invoice</span></span>
             </button>
         </div>
 
     </header>
 
-    <ng-template  [ngIf]="invoices.length > 0">
+    <ng-template [ngIf]="invoices.length > 0">
         <div class="list-container">
             @for (invoice of invoices; track $index) {
             <app-invoice-list-item [invoice]="invoice"></app-invoice-list-item>
@@ -35,7 +46,7 @@
         </div>
     </ng-template>
 
-    <ng-template  [ngIf]="invoices.length == 0">
+    <ng-template [ngIf]="invoices.length == 0">
         <div class="empty-container">
 
             <img src="assets/image/illustration-empty.svg" alt="empty Icon" />

@@ -1,7 +1,57 @@
-<a href="/invoice/{{invoice.id}}" class="invoice-item">
-    <p><span>#</span>{{invoice.id}}</p>
-    <p><span>Due</span>{{invoice.paymentDue | date : 'dd MM yyyy'}}</p>
-    <p>{{invoice.clientName}}</p>
-    <p>{{invoice.total}}</p>
-    <p>{{invoice.status}}</p>
+<a [routerLink]="['/invoice', invoice.id]" class="invoice-item shadow rem-sm">
+    <p class="col"><span class="hashtag">#</span>{{invoice.id}}</p>
+    <p class="col"><span>Due</span>{{invoice.paymentDue | date : 'dd MM yyyy'}}</p>
+    <p class="col">{{invoice.clientName}}</p>
+    <p class="col">{{invoice.total | currency:'GBP':'symbol':'1.2-2':'en-GB'}}</p>
+    <div class="col status-w-arrow-container">
+        <div class="status-container" [ngClass]="{
+            'paid-bg-w-opacity': invoice.status === 'paid',
+            'pending-bg-w-opacity': invoice.status === 'pending',
+            'draft-bg-w-opacity': invoice.status === 'draft'
+        }">
+            <div class="dot" [ngClass]="{
+            'paid-bg': invoice.status === 'paid',
+            'pending-bg': invoice.status === 'pending',
+            'draft-bg': invoice.status === 'draft'
+        }"></div>
+            <p class="status" [ngClass]="{
+            'paid-text': invoice.status === 'paid',
+            'pending-text': invoice.status === 'pending',
+            'draft-text': invoice.status === 'draft'
+        }">{{invoice.status}}</p>
+        </div>
+        <img src="assets/image/icon-arrow-right.svg" />
+    </div>
+</a>
+<a [routerLink]="['/invoice', invoice.id]" class="invoice-item md-hide">
+    <div class="group-row">
+        <p class="col"><span class="hashtag">#</span>{{invoice.id}}</p>
+        <p class="col name-text">{{invoice.clientName}}</p>
+    </div>
+    <div class="group-row">
+        <div class="group-col">
+            <p class="col due-text"><span>Due</span>{{invoice.paymentDue | date : 'dd MM yyyy'}}</p>
+            <p class="col price-text">{{invoice.total | currency:'GBP':'symbol':'1.2-2':'en-GB'}}</p>
+        </div>
+        <div class="col status-w-arrow-container">
+            <div class="status-container" [ngClass]="{
+            'paid-bg-w-opacity': invoice.status === 'paid',
+            'pending-bg-w-opacity': invoice.status === 'pending',
+            'draft-bg-w-opacity': invoice.status === 'draft'
+        }">
+                <div class="dot" [ngClass]="{
+            'paid-bg': invoice.status === 'paid',
+            'pending-bg': invoice.status === 'pending',
+            'draft-bg': invoice.status === 'draft'
+        }"></div>
+                <p class="status" [ngClass]="{
+            'paid-text': invoice.status === 'paid',
+            'pending-text': invoice.status === 'pending',
+            'draft-text': invoice.status === 'draft'
+        }">{{invoice.status}}</p>
+            </div>
+        </div>
+    </div>
+
+
 </a>

@@ -1,0 +1,20 @@
+<div class="new-invoice-wrapper">
+    <app-sidebar></app-sidebar>
+    <section class="wrapper-content">
+        <app-form-component></app-form-component>
+        <section class="form-action">
+            <button (click)="close()" class="discard-btn">
+                Discard
+            </button>
+
+            <div class="save-btn-container">
+                <button (click)="onSaveDraft()" class="save-draft">
+                    Save as Draft
+                </button>
+                <button (click)="onSaveAndSend()" class="save-send">
+                    Save & send
+                </button>
+            </div>
+        </section>
+    </section>
+</div>
